@@ -1,5 +1,8 @@
 "use strict";
 (function() {
+
+  console.log(window.location.host);
+
   var searchbar = document.getElementsByName('q')[0];
   searchbar.tabIndex = 2;
   var results = document.getElementsByClassName('r');
@@ -9,8 +12,7 @@
   var color = null;
   var activated = false;
   for (var i = 0; i < results.length; i++) {
-    var anchor = results[i].children[0];
-    anchors.push(anchor);
+    anchors.push(results[i].children[0]);
     if (i === 0) {
       var style = window.getComputedStyle(results[i], null).getPropertyValue('height');
       size = parseFloat(style.slice(0, -2))/2;
@@ -26,7 +28,7 @@
     div.style.float = "left";
     div.style.display = "none";
     results[i].style.overflow = "visible";
-    results[i].appendChild(div);
+    results[i].insertBefore(div, results[i].children[0]);
     arrows.push(div);
   }
   function createHandlers(i) {
